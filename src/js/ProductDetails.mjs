@@ -36,10 +36,11 @@ export default class ProductDetails {
       .addEventListener("click", this.addToCart.bind(this));
   }
   addToCart() {
-    console.log(this.product);
-    const cartItems = getLocalStorage() || [];
-    console.log(cartItems);
+    // save localStorage contents into an array, cartItems
+    const cartItems = getLocalStorage("so-cart") || [];
+    // add this product to the cartItems array
     cartItems.push(this.product);
+    // update the local storage with this array including the new product
     setLocalStorage("so-cart", cartItems);
   }
   renderProductDetails(selector) {
