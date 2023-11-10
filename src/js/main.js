@@ -3,7 +3,7 @@ import ProductList from "./ProductList.mjs";
 
 const dataSource = new ProductData("tents");
 const element = document.querySelector(".product-list");
-const insertParam = "afterbegin";
-const listing = new ProductList("Tents", dataSource, element, insertParam);
+const position = "afterbegin";
+const listing = new ProductList("tents", dataSource, element, position);
 
 listing.init();

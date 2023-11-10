@@ -12,11 +12,11 @@ function productCardTemplate(product) {
 }
 
 export default class ProductListing {
-    constructor(category, dataSource, listElement, insertParam) {
+    constructor(category, dataSource, listElement, position) {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
-        this.insertParam = insertParam;
+        this.position = position;
     }
 
     async init() {
@@ -28,7 +28,7 @@ export default class ProductListing {
         const filteredList = list.filter((product) => productList.includes(product.Id));
         // set this filtered list to another to easily manipulate in the future
         const renderedList = filteredList;
-        renderListWithTemplate(productCardTemplate, this.listElement, renderedList, "afterbegin", "false");
+        renderListWithTemplate(productCardTemplate, this.listElement, renderedList, this.position, "false");
     }
 }
 

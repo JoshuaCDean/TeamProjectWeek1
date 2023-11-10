@@ -33,7 +33,7 @@ export function getParam(param){
 export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
   //clear parent element if clear === true  
   if (clear === true) {
-      parentElement.clear();
+      parentElement.innerHTML = "";
     }  
     const htmlStrings = list.map(templateFn);
     parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
