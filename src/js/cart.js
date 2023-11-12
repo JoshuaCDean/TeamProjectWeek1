@@ -2,6 +2,9 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
+
+  showTotal(cartItems);
+
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   // add event listener to x button
@@ -33,10 +36,27 @@ function cartItemTemplate(item) {
 function removeFromCart(key) {
   // update the cart by removing the specified product
   const cartItems = getLocalStorage("so-cart");
+
   const updatedCartItems = cartItems.filter((product) => product.Id != key);
   setLocalStorage("so-cart", updatedCartItems);
 
   renderCartContents();
+}
+
+function showTotal(cartItems) {
+  if (cartItems.length > 0) {
+    const cartFooter = document.querySelector(".cart-footer");
+
+    cartFooter.classList.remove("hide");
+
+    const totalPrice = cartItems.reduce(
+      (total, cartItem) => total + cartItem.FinalPrice,
+      0
+    );
+
+    const cartTotal = document.querySelector(".cart-total");
+    cartTotal.textContent = `Total: $${totalPrice}`;
+  }
 }
 
 renderCartContents();
