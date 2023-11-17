@@ -12,7 +12,6 @@ const listElement = document.querySelector(".product-list");
 const myList = new ProductList(category, dataSource, listElement, "afterbegin");
 
 myList.init();
-
 // const position = "afterbegin";
 // const listing = new ProductList("tents", dataSource, element, position);
 

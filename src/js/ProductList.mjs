@@ -20,14 +20,10 @@ export default class ProductListing {
     }
 
     async init() {
-        // specify the ids to include in front page
-        const productList = ["880RR", "985RF", "985PR", "344YJ"];
         // get the complete list from json
         const list = await this.dataSource.getData(this.category);
-        // filter the list based only on the specified ids
-        const filteredList = list.filter((product) => productList.includes(product.Id));
-        // set this filtered list to another to easily manipulate in the future
-        const renderedList = filteredList;
+        // set this rendered list to easily manipulate in the future
+        const renderedList = list;
         renderListWithTemplate(productCardTemplate, this.listElement, renderedList, this.position, "false");
     }
 }
