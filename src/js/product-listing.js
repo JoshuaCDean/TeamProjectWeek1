@@ -6,8 +6,6 @@ const headerPath = "../partials/header.html";
 const footerPath = "../partials/footer.html";
 loadHeaderFooter(headerPath, footerPath);
 
-
-
 const category = getParam("category");
 const dataSource = new ProductData();
 const listElement = document.querySelector(".product-list");
@@ -19,7 +17,6 @@ myList.init();
 const title = document.querySelector("#list-page-title");
 title.innerHTML = `Top Products: <span style="text-transform: capitalize">${category}</span>`;
 
-     
 // const position = "afterbegin";
 // const listing = new ProductList("tents", dataSource, element, position);
 
