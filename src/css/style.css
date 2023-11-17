@@ -229,3 +229,7 @@ footer {
 .category_name {
   text-align: center;
 }
+
+.removeFromCartButton:hover {
+  cursor: pointer;
+}
