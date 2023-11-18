@@ -38,10 +38,22 @@ export default class ProductDetails {
   addToCart() {
     // save localStorage contents into an array, cartItems
     const cartItems = getLocalStorage("so-cart") || [];
-    // add this product to the cartItems array
-    cartItems.push(this.product);
-    // update the local storage with this array including the new product
-    setLocalStorage("so-cart", cartItems);
+    // check first if the item is found in the cart already, save the item and index for updating local storage
+    const searchId = this.product.Id;
+    const foundItem = cartItems.find((item) => item.Id === searchId);
+    const foundItemIndex = cartItems.findIndex((item) => item.Id === searchId);
+    if (foundItem) {
+       cartItems[foundItemIndex].CartQuantity += 1;
+       setLocalStorage("so-cart", cartItems);
+    } else {
+      // add a CartQuantity property to the product
+      this.product.CartQuantity = 1;
+      // add this product to the cartItems array
+      cartItems.push(this.product);
+      // update the local storage with this array including the new product
+      setLocalStorage("so-cart", cartItems); 
+    }
+    
   }
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
