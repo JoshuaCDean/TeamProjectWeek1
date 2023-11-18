@@ -22,11 +22,10 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function getParam(param){
+export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get(param);
-
   return product;
 }
 
@@ -68,4 +67,3 @@ export async function loadHeaderFooter(headerPath, footerPath) {
   renderWithTemplate(headerTemplate, headerId);
   renderWithTemplate(footerTemplate, footerId);
 }
-
