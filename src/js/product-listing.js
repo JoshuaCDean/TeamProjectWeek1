@@ -6,7 +6,6 @@ const headerPath = "../partials/header.html";
 const footerPath = "../partials/footer.html";
 loadHeaderFooter(headerPath, footerPath);
 
-
 const category = getParam("category");
 const dataSource = new ProductData();
 const element = document.querySelector(".product-list");
