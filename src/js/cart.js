@@ -23,7 +23,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -31,8 +31,10 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1 <span class="removeFromCartButton" data-id="${item.Id}">❌</span></p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <p class="cart-card__quantity">qty: ${
+    item.CartQuantity
+  } <span class="removeFromCartButton" data-id="${item.Id}">❌</span></p>
+  <p class="cart-card__price">$${item.FinalPrice * item.CartQuantity}</p>
 </li>`;
 
   return newItem;
@@ -55,7 +57,7 @@ function showTotal(cartItems) {
     cartFooter.classList.remove("hide");
 
     const totalPrice = cartItems.reduce(
-      (total, cartItem) => total + cartItem.FinalPrice,
+      (total, cartItem) => total + cartItem.FinalPrice * cartItem.CartQuantity,
       0
     );
 

@@ -1,4 +1,4 @@
-import { loadHeaderFooter} from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
 const headerPath = "../partials/header.html";
 const footerPath = "../partials/footer.html";

@@ -224,3 +224,12 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+/* additional styles */
+.category_name {
+  text-align: center;
+}
+
+.removeFromCartButton:hover {
+  cursor: pointer;
+}
