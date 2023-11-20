@@ -122,14 +122,14 @@ button {
 .products {
   padding: 0.5em;
 }
-.product-list {
-  display: flex;
-  flex-flow: row wrap;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
   justify-content: space-between;
-  list-style-type: none;
+  /* list-style-type: none; */
   padding: 0;
 }
-.product-list a {
+.product-grid a {
   text-decoration: none;
   color: var(--dark-grey);
 }
