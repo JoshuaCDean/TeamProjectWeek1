@@ -1,4 +1,6 @@
-const baseURL = import.meta.env.VITE_SERVER_URL
+const baseURL = import.meta.env.VITE_SERVER_URL;
+// it's frustrating trying to do homework, following the steps, and
+// seeing that it's already been done, but really that's my fault
 
 function convertToJson(res) {
   if (res.ok) {
