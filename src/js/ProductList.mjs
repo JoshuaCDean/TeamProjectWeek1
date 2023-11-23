@@ -30,7 +30,6 @@ export default class ProductListing {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
     //set the title to the current category
     document.querySelector(".title").innerHTML = this.category;
-    console.log(`HERE IT IS!!!: ${JSON.stringify(list)}`)
   }
 }
 
