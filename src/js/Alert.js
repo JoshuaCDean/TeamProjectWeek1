@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 function alertTemplate(alert) {
   const finishedAlert = document.createElement("p");
@@ -14,7 +14,7 @@ export default class Alert {
   }
 
   async init() {
-    const dataSource = new ProductData("alerts");
+    const dataSource = new ExternalServices("alerts");
     const alerts = await dataSource.getData(dataSource);
     this.alertRender(alerts);
   }
