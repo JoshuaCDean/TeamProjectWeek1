@@ -40,11 +40,11 @@ export default class CheckoutProcess {
   init() {
     this.list = getLocalStorage(this.key);
     this.calculateItemSummary();
-    packageItems(this.list);
+    // packageItems(this.list);
   }
 
   calculateItemSummary() {
-      const subTotalElement = document.querySelector(this.outputSelector + ` #subtotal`);
+      const subTotalElement = document.querySelector(this.outputSelector + ` #cartTotal`);
     // calculate and display the total amount of the items in the cart, and the number of items.
       this.subTotal = this.list.reduce((total, item) => 
           total + item.FinalPrice * item.CartQuantity, 0
@@ -56,7 +56,7 @@ export default class CheckoutProcess {
           total + item.CartQuantity, 0
       );
 
-      const itemTotalElement = document.querySelector(this.outputSelector + ` #numItems`);
+      const itemTotalElement = document.querySelector(this.outputSelector + ` #num-items`);
       itemTotalElement.innerHTML = this.itemTotal
   } 
 
@@ -72,13 +72,13 @@ export default class CheckoutProcess {
 
   displayOrderTotals() {
     // once the totals are all calculated display them in the order summary page
-      const shipping = document.querySelector("#shipping");
-      const tax = document.querySelector("#tax");
-      const total = document.querySelector("#totalBill");
+      const shipping = document.querySelector(this.outputSelector + " #shipping");
+      const tax = document.querySelector(this.outputSelector + " #tax");
+      const orderTotal = document.querySelector(this.outputSelector + " #orderTotal");
 
-      shipping.innerHTML = `$${this.shipping.toFixed(2)}`;
-      tax.innerHTML = `$${this.tax.toFixed(2)}`;
-      total.innerHTML = `$${this.orderTotal.toFixed(2)}`;
+      shipping.innerText = "$" + this.shipping.toFixed(2);
+      tax.innerText = "$" + this.tax.toFixed(2);
+      orderTotal.innerHTML = "$" + this.orderTotal.toFixed(2);
   }
 
 
@@ -89,7 +89,7 @@ export default class CheckoutProcess {
     const json = formDataToJSON(formElement);
     
     json.orderDate = new Date();
-    json.totalBill = this.orderTotal;
+    json.orderTotal = this.orderTotal;
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
