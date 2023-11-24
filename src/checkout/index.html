@@ -8,8 +8,8 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="../js/checkout.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
@@ -19,6 +19,90 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+      <form name="checkout">
+        <fieldset id="user-info">
+          <legend>Customer Information</legend>
+          <label for="fname"
+            >First Name
+            <input type="text" name="fname" id="fname" value="First" required
+          /></label>
+          <label for="lname"
+            >Last Name
+            <input type="text" name="lname" id="lname" value="Last" required
+          /></label>
+        </fieldset>
+        <fieldset id="user-address">
+          <legend>Shipping Address</legend>
+          <label for="street"
+            >Street Address
+            <input
+              type="text"
+              name="street"
+              id="street"
+              value="123 First"
+              required
+          /></label>
+          <label for="city"
+            >City
+            <input type="text" name="city" id="city" value="First" required
+          /></label>
+          <label for="state"
+            >State
+            <input type="text" name="state" id="state" value="First" required
+          /></label>
+          <label for="zip"
+            >Zip Code
+            <input type="text" name="zip" id="zip" value="First" required
+          /></label>
+        </fieldset>
+        <fieldset id="user-payment">
+          <legend>Payment Information</legend>
+          <label for="cardNumber"
+            >Credit Card Number
+            <input
+              type="text"
+              name="cardNumber"
+              id="cardNumber"
+              value="1234123412341234"
+              required
+          /></label>
+          <label for="expiration"
+            >Expiration Date
+            <input
+              type="text"
+              name="expiration"
+              id="expiration"
+              value="07/25"
+              required
+          /></label>
+          <label for="code"
+            >Security Code
+            <input type="text" name="code" id="code" value="123" required
+          /></label>
+        </fieldset>
+        <fieldset>
+          <legend>Order Summary</legend>
+          <table class="orderSummary">
+            <tr>
+              <td>Subtotal</td>
+              <td id="subtotal">$0.00</td>
+            </tr>
+            <tr>
+              <td>Tax</td>
+              <td id="tax">$0.00</td>
+            </tr>
+            <tr>
+              <td>Shipping</td>
+              <td id="shipping">$0.00</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td id="totalBill">$0.00</td>
+            </tr>
+          </table>
+        </fieldset>
+        <button id="checkoutSubmit" type="submit">Checkout</button>
+      </form>
     </main>
 
     <footer id="main-footer"></footer>
