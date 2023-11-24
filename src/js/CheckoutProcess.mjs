@@ -99,9 +99,15 @@ export default class CheckoutProcess {
     // call the checkout method in our ExternalServices module and send it our data object.
     try {
       const res = await services.checkout(json);
-      console.log(res);
-    } catch(err) {
-      console.log(err);
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      return data;
+    } catch(error) {
+      console.error("Error during checkout:", error.message);
+      throw error;
     }
   }
 }
