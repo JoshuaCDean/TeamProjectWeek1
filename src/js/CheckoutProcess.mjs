@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -95,19 +95,24 @@ export default class CheckoutProcess {
     json.items = packageItems(this.list);
 
     console.log(json);
+
+ 
     
     // call the checkout method in our ExternalServices module and send it our data object.
     try {
       const res = await services.checkout(json);
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-
       const data = await res.json();
+      // the following won't work since there is an error with this request
+         // empty cart
+      setLocalStorage("so-cart", []);
+
+      // redirect to success page
+      window.location.href = "success.html";
       return data;
+
     } catch(error) {
-      console.error("Error during checkout:", error.message);
-      throw error;
+      alertMessage(error.message);
+      throw new Error("Error during checkout:", error.message);
     }
   }
 }
