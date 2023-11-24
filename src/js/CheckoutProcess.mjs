@@ -101,14 +101,16 @@ export default class CheckoutProcess {
     // call the checkout method in our ExternalServices module and send it our data object.
     try {
       const res = await services.checkout(json);
-      const data = await res.json();
+      console.log(res);
       // the following won't work since there is an error with this request
+      if (res.ok) {
          // empty cart
-      setLocalStorage("so-cart", []);
+        setLocalStorage("so-cart", []);
 
-      // redirect to success page
-      window.location.href = "success.html";
-      return data;
+        // redirect to success page
+        window.location.href = "success.html";
+  
+      }
 
     } catch(error) {
       alertMessage(error.message);

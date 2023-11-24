@@ -233,3 +233,18 @@ footer {
 .removeFromCartButton:hover {
   cursor: pointer;
 }
+
+.alert {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+  background-color: #f0a868;
+}
+
+form label{
+  display: block;
+}

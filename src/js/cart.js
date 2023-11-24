@@ -16,7 +16,7 @@ function renderCartContents() {
   removeButtons.forEach((button) => {
     button.addEventListener("click", () => removeFromCart(button.dataset.id));
   });
-
+  console.log(cartItems);
   redirectCheckout();
 }
 
