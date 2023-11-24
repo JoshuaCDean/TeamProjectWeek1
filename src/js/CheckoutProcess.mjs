@@ -16,15 +16,12 @@ function formDataToJSON(formElement) {
 // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
 function packageItems(items) {
   // convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
-  const simplifiedItems = items.map((item) => {
-    console.log(item);
-    return {
+  const simplifiedItems = items.map(item => ({
       id: item.Id,
       name: item.Name,
       price: item.FinalPrice,
       quantity: item.CartQuantity,  
-    };
-  });
+    }));
   return simplifiedItems;
 }
 
@@ -43,23 +40,25 @@ export default class CheckoutProcess {
   init() {
     this.list = getLocalStorage(this.key);
     this.calculateItemSummary();
-    this.calculateOrdertotal();
     packageItems(this.list);
   }
 
   calculateItemSummary() {
-      const summaryElement = document.querySelector(this.outputSelector + ` #subtotal`);
+      const subTotalElement = document.querySelector(this.outputSelector + ` #subtotal`);
     // calculate and display the total amount of the items in the cart, and the number of items.
       this.subTotal = this.list.reduce((total, item) => 
           total + item.FinalPrice * item.CartQuantity, 0
       );
 
-      summaryElement.innerHTML = this.subTotal;
+      subTotalElement.innerHTML = `$${this.subTotal.toFixed(2)}`;
 
       this.itemTotal = this.list.reduce((total, item) =>
           total + item.CartQuantity, 0
       );
-  }
+
+      const itemTotalElement = document.querySelector(this.outputSelector + ` #numItems`);
+      itemTotalElement.innerHTML = this.itemTotal
+  } 
 
   calculateOrdertotal() {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
@@ -94,6 +93,7 @@ export default class CheckoutProcess {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
+
     console.log(json);
     
     // call the checkout method in our ExternalServices module and send it our data object.
