@@ -17,6 +17,8 @@ function renderCartContents() {
   removeButtons.forEach((button) => {
     button.addEventListener("click", () => removeFromCart(button.dataset.id));
   });
+
+  console.log(cartItems);
 }
 
 function cartItemTemplate(item) {
@@ -63,6 +65,7 @@ function showTotal(cartItems) {
 
     const cartTotal = document.querySelector(".cart-total");
     cartTotal.textContent = `Total: $${totalPrice}`;
+
   }
 }
 
