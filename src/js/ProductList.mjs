@@ -10,17 +10,18 @@ function productCardTemplate(product) {
   <h3 class="card__brand">${product.Brand.Name}</h3>
   <h2 class="card__name">${product.Name}</h2>
   <p class="product-card__price">$${product.FinalPrice}</p></a>
-  <p class="product-card_discount">Discount: ${Math.round((parseInt(product.FinalPrice) % parseInt(product.ListPrice))*100)}%</p></a>
+  <p class="product-card_discount">Discount: ${Math.round(
+    (parseInt(product.FinalPrice) % parseInt(product.ListPrice)) * 100
+  )}%</p></a>
 </li>`;
 }
 
-
 export default class ProductListing {
   constructor(category, dataSource, listElement, position) {
-      this.category = category;
-      this.dataSource = dataSource;
-      this.listElement = listElement;
-      this.position = position;
+    this.category = category;
+    this.dataSource = dataSource;
+    this.listElement = listElement;
+    this.position = position;
   }
 
   async init() {
@@ -29,8 +30,7 @@ export default class ProductListing {
     // render the list
     renderListWithTemplate(productCardTemplate, this.listElement, list);
     //set the title to the current category
-    document.querySelector(".title").innerHTML = this.category;
-    console.log(`HERE IT IS!!!: ${JSON.stringify(list)}`)
+    document.querySelector(".product-list").innerHTML = this.category;
+    console.log(`HERE IT IS!!!: ${JSON.stringify(list)}`);
   }
 }
-
