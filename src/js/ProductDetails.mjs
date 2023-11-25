@@ -16,7 +16,10 @@ function productDetailsTemplate(product) {
     </p>
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-    </div></section>`;
+    </div>
+    <button id="addToWishlist" data-id="${product.Id}">Add to Wishlist 💖</button>
+
+    </section>`;
 }
 
 export default class ProductDetails {
@@ -35,7 +38,15 @@ export default class ProductDetails {
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
+
+    document
+      .getElementById("addToWishlist")
+      .addEventListener("click", this.addToWishList.bind(this));
+
+    const wishlist = getLocalStorage("wishlist") || [];
+    console.log(wishlist);
   }
+
   addToCart() {
     // save localStorage contents into an array, cartItems
     const cartItems = getLocalStorage("so-cart") || [];
@@ -55,7 +66,19 @@ export default class ProductDetails {
       setLocalStorage("so-cart", cartItems); 
     }
     
-  }
+    }
+
+    addToWishList() {
+      const wishlist = getLocalStorage("wishlist") || [];
+
+      const searchId = this.product.Id;
+      const foundItem = wishlist.find((item) => item.Id == searchId);
+      if (!foundItem) {
+       wishlist.push(this.product);
+       setLocalStorage("wishlist", wishlist); 
+      }
+    }
+
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
     element.insertAdjacentHTML(

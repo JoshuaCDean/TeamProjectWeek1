@@ -32,7 +32,8 @@ export default class ExternalServices {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
+      // timeout: 120000,
     };
-    return await fetch("https://wdd330-backend.onrender.com:3000/checkout", options).then(convertToJson);
+    return await fetch("https://wdd330-backend.onrender.com:3000/checkout/", options).then(convertToJson);
   }
 }
