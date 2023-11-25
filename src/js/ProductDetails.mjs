@@ -43,8 +43,6 @@ export default class ProductDetails {
       .getElementById("addToWishlist")
       .addEventListener("click", this.addToWishList.bind(this));
 
-    const wishlist = getLocalStorage("wishlist") || [];
-    console.log(wishlist);
   }
 
   addToCart() {
