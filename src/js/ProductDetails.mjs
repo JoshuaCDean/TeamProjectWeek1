@@ -9,7 +9,13 @@ function productDetailsTemplate(product) {
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>
-    <p>Discount: ${Math.round((parseInt(product.FinalPrice) % parseInt(product.ListPrice)) * 100)}%</p>
+    <div class="discount-flag">
+      <img
+        src="../images/discount_flag.png"
+        alt="Discount Flag Image"
+      />
+      <p>${Math.round((parseInt(product.FinalPrice) % parseInt(product.ListPrice)) * 100)}%</p>
+    </div>
     <p class="product__color">${product.Colors[0].ColorName}</p>
     <p class="product__description">
     ${product.DescriptionHtmlSimple}
