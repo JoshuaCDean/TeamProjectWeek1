@@ -85,7 +85,7 @@ button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
-  margin: auto;
+  margin: 12px auto;
   display: block;
   border: 0;
   font-size: var(--large-font);
@@ -98,7 +98,7 @@ button {
 
 /* Cart icon styles */
 .cart {
-  padding-top: 1em;
+  /* padding-top: 1em; */
   position: relative;
   text-align: center;
 }
@@ -206,6 +206,12 @@ button {
   display: none;
 }
 
+.nav {
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -230,6 +236,10 @@ footer {
   text-align: center;
 }
 
-.removeFromCartButton:hover {
+.removeFromCartButton:hover,
+.moveToCart:hover,
+.removeFromWishlist:hover {
   cursor: pointer;
+  border-radius: 20%;
+  box-shadow: 0 0 3px gray;
 }
