@@ -11,6 +11,14 @@ function renderCartContents() {
   showTotal(cartItems);
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  const quantityInputs = document.querySelectorAll(".cart-quantity-input");
+  quantityInputs.forEach((input) => {
+    input.addEventListener("change", () =>
+      updateQuantity(input.dataset.id, input.value)
+    );
+  });
+
   // add event listener to x button
   const removeButtons = document.querySelectorAll(".removeFromCartButton");
   removeButtons.forEach((button) => {
@@ -32,9 +40,10 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: ${
+  <p class="cart-card__quantity">qty: <input type="number" class="cart-quantity-input" value="${
     item.CartQuantity
-  } <span class="removeFromCartButton" data-id="${item.Id}">❌</span></p>
+  }" data-id="${item.Id}"/>
+  <span class="removeFromCartButton" data-id="${item.Id}">❌</span></p>
   <p class="cart-card__price">$${item.FinalPrice * item.CartQuantity}</p>
 </li>`;
 
@@ -65,6 +74,21 @@ function showTotal(cartItems) {
     const cartTotal = document.querySelector(".cart-total");
     cartTotal.textContent = `Total: $${totalPrice}`;
   }
+}
+
+function updateQuantity(id, newQuantity) {
+  const cartItems = getLocalStorage("so-cart");
+
+  const updatedCartItems = cartItems.map((product) => {
+    if (product.Id === id) {
+      return { ...product, CartQuantity: parseInt(newQuantity) };
+    }
+    return product;
+  });
+
+  setLocalStorage("so-cart", updatedCartItems);
+
+  renderCartContents();
 }
 
 function redirectCheckout() {
